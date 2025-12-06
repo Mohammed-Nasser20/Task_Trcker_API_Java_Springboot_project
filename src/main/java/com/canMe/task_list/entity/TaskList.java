@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -17,7 +18,7 @@ public class TaskList {
     @Id
     @GeneratedValue
     @Column(updatable = false, nullable = false)
-    private Integer id;
+    private UUID id;
     @Column(nullable = false)
     private String title;
 

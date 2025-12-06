@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -16,7 +17,7 @@ public class Task {
     @Id
     @GeneratedValue
     @Column(updatable = false, nullable = false)
-    private Integer id;
+    private UUID id;
 
     @Column(nullable = false)
     private String title;
