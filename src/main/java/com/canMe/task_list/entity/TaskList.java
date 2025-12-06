@@ -2,6 +2,7 @@ package com.canMe.task_list.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +19,7 @@ public class TaskList {
     @Id
     @GeneratedValue
     @Column(updatable = false, nullable = false)
-    private UUID id;
+    private Integer id;
     @Column(nullable = false)
     private String title;
 
