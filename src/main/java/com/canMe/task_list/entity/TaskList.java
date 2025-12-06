@@ -18,6 +18,8 @@ public class TaskList {
     @GeneratedValue
     @Column(updatable = false, nullable = false)
     private Integer id;
+    @Column(nullable = false)
+    private String title;
 
     private String description;
 
