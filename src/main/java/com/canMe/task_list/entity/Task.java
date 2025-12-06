@@ -32,7 +32,7 @@ public class Task {
     private LocalDateTime updated;
 
     @ManyToOne
-    @JoinColumn(name = "task-list-id")
+    @JoinColumn(name = "task_list_id")
     private TaskList taskList;
 
     @Column(name = "status", nullable = false)
