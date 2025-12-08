@@ -32,4 +32,14 @@ public class TaskListController {
     public Optional<TaskListDto> getTaskList(@PathVariable("task_list_id") int id) {
         return taskListService.getTaskList(id).map(taskListMapper::toDto);
     }
+
+    @PutMapping("/{task_list_id}")
+    public TaskListDto updateTaskList(
+            @PathVariable("task_list_id") int id,
+            @RequestBody TaskListDto taskList
+    ) {
+        return taskListMapper.toDto(
+                taskListService.updateTaskList(id, taskListMapper.fromDto(taskList))
+        );
+    }
 }
