@@ -9,6 +9,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface TaskListRepository extends JpaRepository<TaskList, Integer> {
-//    List<Task> findByTaskListId(Integer taskListId);
 //    Optional<Task> findByTaskListIdAndId(Integer taskListId, Integer taskId);
 }
