@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class TaskListServiceImpl implements TaskListService {
@@ -33,5 +35,10 @@ public class TaskListServiceImpl implements TaskListService {
                         taskList.getDescription(),now, now,null
                         )
         );
+    }
+
+    @Override
+    public Optional<TaskList> getTaskList(int taskListId) {
+        return taskListRepository.findById(taskListId);
     }
 }
