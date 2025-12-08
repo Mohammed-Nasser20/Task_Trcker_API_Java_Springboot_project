@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("task-lists/{task_list_id}/tasks")
@@ -26,5 +27,13 @@ public class TaskController {
     ) {
         Task task = taskService.createTask(id, taskMapper.fromDto(taskDto));
         return taskMapper.toDto(task);
+    }
+
+    @GetMapping("/{task_id}")
+    public Optional<TaskDto> getTask(
+            @PathVariable("task_list_id") int taskListId,
+            @PathVariable("task_id") int taskId
+    ) {
+        return taskService.getTask(taskListId, taskId).map(taskMapper::toDto);
     }
 }

@@ -48,4 +48,10 @@ public class TaskServiceImpl implements TaskService {
                 now, now,taskList,taskstatus,taskPriority
         ));
     }
+
+    @Override
+    public Optional<Task> getTask(int taskListId, int taskId) {
+
+        return taskRepository.findByTaskListIdAndId(taskListId, taskId);
+    }
 }
