@@ -11,4 +11,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     List<Task> findByTaskListId(int id);
 
     Optional<Task> findByTaskListIdAndId(int taskListId, int taskId);
+    void deleteByTaskListIdAndId(int taskListId, int taskId);
 }

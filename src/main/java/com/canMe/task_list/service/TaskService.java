@@ -9,4 +9,6 @@ public interface TaskService {
     List<Task> listTasks(int taskListId);
     Task createTask(int taskListId, Task task);
     Optional<Task> getTask(int taskListId, int taskId);
+    Task updateTask(int taskListId, int taskId, Task task);
+    void deleteTask(int taskListId, int taskId);
 }

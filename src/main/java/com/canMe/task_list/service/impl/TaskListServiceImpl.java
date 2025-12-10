@@ -3,6 +3,7 @@ package com.canMe.task_list.service.impl;
 import com.canMe.task_list.entity.TaskList;
 import com.canMe.task_list.repository.TaskListRepository;
 import com.canMe.task_list.service.TaskListService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,7 @@ public class TaskListServiceImpl implements TaskListService {
     }
 
     @Override
+    @Transactional
     public TaskList updateTaskList(int id, TaskList taskList) {
         if (taskList.getId() == null)
             throw new IllegalArgumentException("Task list must have ID");

@@ -7,11 +7,13 @@ import com.canMe.task_list.entity.TaskStatus;
 import com.canMe.task_list.repository.TaskListRepository;
 import com.canMe.task_list.repository.TaskRepository;
 import com.canMe.task_list.service.TaskService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,4 +56,34 @@ public class TaskServiceImpl implements TaskService {
 
         return taskRepository.findByTaskListIdAndId(taskListId, taskId);
     }
+
+    @Override
+    @Transactional
+    public Task updateTask(int taskListId, int taskId, Task task) {
+        if (task.getId() == null)
+            throw new IllegalArgumentException("Task must have ID");
+        if (!Objects.equals(taskId, task.getId()))
+            throw new IllegalArgumentException("not allow to do that!");
+
+        if (null == task.getTaskPriority())
+            throw new IllegalArgumentException("task must be have valid priority!");
+        if (null == task.getTaskStatus())
+            throw new IllegalArgumentException("task must be have valid status!");
+        Task existingTask = taskRepository.findByTaskListIdAndId(taskListId, taskId)
+                .orElseThrow(() -> new IllegalArgumentException("Task not found!"));
+        existingTask.setTitle(task.getTitle());
+        existingTask.setDescription(task.getDescription());
+        existingTask.setDueDate(task.getDueDate());
+        existingTask.setTaskPriority(task.getTaskPriority());
+        existingTask.setTaskStatus(task.getTaskStatus());
+        existingTask.setUpdated(LocalDateTime.now());
+        return taskRepository.save(existingTask);
+    }
+
+    @Override
+    @Transactional
+    public void deleteTask(int taskListId, int taskId) {
+        taskRepository.deleteByTaskListIdAndId(taskListId, taskId);
+    }
+
 }

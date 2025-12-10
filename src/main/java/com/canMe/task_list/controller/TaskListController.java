@@ -21,6 +21,7 @@ public class TaskListController {
     public List<TaskListDto> listTaskList() {
         return taskListService.listTaskList().stream().map(taskListMapper::toDto).toList();
     }
+
     @PostMapping
     public TaskListDto createTaskList(@RequestBody TaskListDto taskList) {
         var tasklist = taskListMapper.fromDto(taskList);
